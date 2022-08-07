@@ -163,6 +163,13 @@ const useStyles = makeStyles((theme) => ({
     // paddingRight: "7px",
     // paddingLeft: "7px",
   },
+  logoStyle: {
+    position: "relative",
+    top: "8px",
+    left: "-11px",
+    cursor: "pointer",
+    maxWidth: "155px",
+  },
 }));
 
 const drawerWidth = 270;
@@ -186,21 +193,44 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   })
 );
 
+// const AppBar = styled(MuiAppBar, {
+//   shouldForwardProp: (prop) => prop !== "open",
+// })(({ theme, open }) => ({
+//   // background: "#fff !important",
+//   // boxShadow: "none !important",
+//   borderBottom: "1px solid #dddddd !important",
+//   transition: theme.transitions.create(["margin", "width"], {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen,
+//   }),
+//   zIndex: `${theme.zIndex.drawer + 1} !important`,
+//   background: "#fff !important",
+//   boxShadow: "none !important",
+//   ...(open && {
+//     // background: "#fff !important",
+//     // boxShadow: "none !important",
+//     borderBottom: "1px solid #dddddd !important",
+//     width: `calc(100% - ${drawerWidth}px)`,
+//     marginLeft: `${drawerWidth}px`,
+//     transition: theme.transitions.create(["margin", "width"], {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//   }),
+// }));
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  background: "#fff !important",
-  boxShadow: "none !important",
-  borderBottom: "1px solid #dddddd !important",
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  background: "#fff !important",
+  boxShadow: "none",
+  zIndex: theme.zIndex.drawer + 1,
+  borderBottom: "1px solid #dddddd !important",
   ...(open && {
-    background: "#fff !important",
-    boxShadow: "none !important",
-    borderBottom: "1px solid #dddddd !important",
-    width: `calc(100% - ${drawerWidth}px)`,
+    // width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
@@ -208,7 +238,6 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
-
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -295,7 +324,7 @@ export default function Layout() {
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpen(!open);
   };
 
   const checkSupportsRoute = () => {
@@ -360,11 +389,36 @@ export default function Layout() {
       <Box sx={{ display: "flex" }}>
         <AppBar position="fixed" open={open}>
           <Toolbar>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1 }}
-            ></Typography>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <img
+                src="/image/logoTuso.png"
+                alt=""
+                className={classes.logoStyle}
+              />
+              <IconButton
+                onClick={handleDrawerClose}
+                aria-label="open drawer"
+                edge="start"
+                style={{
+                  ml: 2,
+                  position: "relative",
+                  top: "-14px",
+                  left: "55px",
+                  borderRadius: "10px",
+                  border: "1px solid rgba(158,31,96,1)",
+
+                  padding: "5px",
+                  "&:hover": {
+                    background: "rgba(158,31,96,1)",
+                  },
+                }}
+                // sx={{ mr: 2, ...(open && { display: "none" }) }}
+              >
+                <MenuIcon
+                  sx={{ color: "rgba(158,31,96,1)", fontSize: "26px" }}
+                />
+              </IconButton>
+            </Typography>
 
             <div>
               <IconButton
@@ -455,7 +509,7 @@ export default function Layout() {
           open={open}
         >
           <DrawerHeader>
-            <img
+            {/* <img
               src="/image/logoTuso.png"
               alt=""
               style={{
@@ -467,7 +521,7 @@ export default function Layout() {
             />
             <IconButton onClick={handleDrawerClose}>
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
           </DrawerHeader>
           <Divider />
           <div style={{ textAlign: "center", padding: "20px 0" }}>

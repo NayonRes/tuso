@@ -2,18 +2,17 @@ import React, { useContext } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../home/Home";
-import StoreManagement from "../store-management/StoreManagement";
 import ForgotPassword from "../user-forms/ForgotPassword";
 import Login from "../user-forms/Login";
 import ResetPassword from "../user-forms/ResetPassword";
 import Verify from "../user-forms/Verify";
 import { AuthContext } from "../../context/AuthContext";
-import StoreDetail from "../store-management/StoreDetail";
 import NoMatch from "../NoMatch";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import PulseLoader from "react-spinners/PulseLoader";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@mui/styles"; 
+import UserList from "../users/UserList";
 const useStyles = makeStyles((theme) => ({
   dialogStyle: {
     // backgroundColor: "red",
@@ -35,10 +34,7 @@ function RedirectToHome({ children }) {
 
   return !tuso_admin_panel.token ? children : <Navigate to="/home" />;
 }
-const Navigation = ({ 
-  openLoadingDialog,
-  setOpenLoadingDialog,
-}) => {
+const Navigation = ({ openLoadingDialog, setOpenLoadingDialog }) => {
   const classes = useStyles();
   const { tuso_admin_panel } = useContext(AuthContext);
 
@@ -75,7 +71,7 @@ const Navigation = ({
           path="verify"
           element={
             <RedirectToHome>
-              <Verify/>
+              <Verify />
             </RedirectToHome>
           }
         />
@@ -96,21 +92,11 @@ const Navigation = ({
             </PrivateRoute>
           }
         />
-
         <Route
-          path="store-management"
+          path="user-list"
           element={
             <PrivateRoute>
-              <StoreManagement />
-            </PrivateRoute>
-          }
-        />
-
-        <Route
-          path="store-detail/:slug"
-          element={
-            <PrivateRoute>
-              <StoreDetail />
+              <UserList />
             </PrivateRoute>
           }
         />
