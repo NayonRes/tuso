@@ -34,7 +34,7 @@ const NoMatch = () => {
             <Button
               component={Link}
               variant="contained"
-              to="/home"
+              to="/dashboard"
               startIcon={<ArrowBackIcon />}
             >
               GO TO HOMEPAGE

@@ -5,14 +5,10 @@ import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import { useSnackbar } from "notistack";
-import { AuthContext } from "../../context/AuthContext";
-import PulseLoader from "react-spinners/PulseLoader";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -21,17 +17,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Link from "@mui/material/Link";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Stack from "@mui/material/Stack";
+import GridViewIcon from "@mui/icons-material/GridView";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -159,62 +149,6 @@ const Department = () => {
     return isError;
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    let err = validation();
-    if (err) {
-      return;
-    } else {
-      setLoading(true);
-      try {
-        let data = {
-          enabled: true,
-          emailVerified: true,
-          productName: productName,
-          lastName: lastName,
-          email: email,
-          credentials: [
-            {
-              type: "password",
-              value: password,
-              temporary: false,
-            },
-          ],
-          attributes: {
-            phoneNumber: description,
-            street: street,
-            locality: locality,
-            region: region,
-            postal_code: price,
-            storeId: storeId,
-          },
-          groups: ["TEACHER"],
-        };
-        console.log("data", data);
-        // let token = await RefreshToken(kinder_cubby_panel_user, logout, login);
-        // console.log("token get from RefreshToken", token);
-        let response = await axios({
-          url: `${process.env.REACT_APP_BASE_URL}/auth/admin/realms/kindercubby/users`,
-          method: "post",
-          data: data,
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
-        });
-        console.log("response", response);
-        if (response.status === 201) {
-          handleSnakbarOpen("Added new teacher successfully", "success");
-
-          navigate("/teacher-list");
-        }
-      } catch (error) {
-        console.log("error", error.response);
-        handleSnakbarOpen(error.response.data.errorMessage, "error");
-        setLoading(false);
-      }
-      setLoading(false);
-    }
-  };
   function handleClick(event) {
     event.preventDefault();
     console.info("You clicked a breadcrumb.");
@@ -252,26 +186,42 @@ const Department = () => {
       >
         <Grid item xs={12} style={{ marginBottom: "30px" }}>
           <Grid container alignItems="center">
-            <Grid
-              style={{ borderRight: "1px solid #a3a3a3", padding: "0px 20px" }}
-            >
-              <Typography
-                variant="h5"
-                style={{ color: "#515151" }}
-                component="div"
-              >
-                Configuration
-              </Typography>
-            </Grid>
-            <Grid style={{ padding: "0px 20px" }}>
-              <Stack spacing={2}>
-                <Breadcrumbs
-                  separator={<NavigateNextIcon fontSize="small" />}
-                  aria-label="breadcrumb"
+            <Grid item xs={10}>
+              <Grid container alignItems="center">
+                <Grid
+                  style={{
+                    borderRight: "1px solid #a3a3a3",
+                    padding: "0px 20px",
+                  }}
                 >
-                  {breadcrumbs}
-                </Breadcrumbs>
-              </Stack>
+                  <Typography
+                    variant="h5"
+                    style={{ color: "#515151" }}
+                    component="div"
+                  >
+                    Configuration
+                  </Typography>
+                </Grid>
+                <Grid style={{ padding: "0px 20px" }}>
+                  <Stack spacing={2}>
+                    <Breadcrumbs
+                      separator={<NavigateNextIcon fontSize="small" />}
+                      aria-label="breadcrumb"
+                    >
+                      {breadcrumbs}
+                    </Breadcrumbs>
+                  </Stack>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={2} style={{ textAlign: "right" }}>
+              <Button
+                variant="contained"
+                disableElevation
+                style={{ padding: "8px", minWidth: "0px" }}
+              >
+                <GridViewIcon />
+              </Button>
             </Grid>
           </Grid>
         </Grid>
@@ -328,7 +278,7 @@ const Department = () => {
           &nbsp; &nbsp;
         </Grid>
 
-        <form className={classes.form} onSubmit={onSubmit}>
+        <form className={classes.form}>
           <Typography
             variant="h5"
             component="div"

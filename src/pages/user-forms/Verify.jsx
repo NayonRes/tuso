@@ -81,7 +81,7 @@ const Verify = () => {
       setTimeout(() => {
         login(data);
         setLoading(false);
-        navigate("/home");
+        navigate("/dashboard");
       }, 1200);
     } catch (error) {
       console.log("error", error);

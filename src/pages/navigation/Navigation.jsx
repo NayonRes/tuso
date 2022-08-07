@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
-
-import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "../home/Home";
+import React, { useContext } from "react"; 
+import { Routes, Route, Navigate } from "react-router-dom"; 
 import ForgotPassword from "../user-forms/ForgotPassword";
 import Login from "../user-forms/Login";
 import ResetPassword from "../user-forms/ResetPassword";
@@ -14,6 +12,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import { makeStyles } from "@mui/styles";
 import UserList from "../users/UserList";
 import Department from "../configuration/Department";
+import Dashboard from "../dashboard/Dashboard";
 const useStyles = makeStyles((theme) => ({
   dialogStyle: {
     // backgroundColor: "red",
@@ -33,7 +32,7 @@ function PrivateRoute({ children }) {
 function RedirectToHome({ children }) {
   const { tuso_admin_panel } = useContext(AuthContext);
 
-  return !tuso_admin_panel.token ? children : <Navigate to="/home" />;
+  return !tuso_admin_panel.token ? children : <Navigate to="/dashboard" />;
 }
 const Navigation = ({ openLoadingDialog, setOpenLoadingDialog }) => {
   const classes = useStyles();
@@ -77,10 +76,10 @@ const Navigation = ({ openLoadingDialog, setOpenLoadingDialog }) => {
           }
         />
         <Route
-          path="home"
+          path="dashboard"
           element={
             <PrivateRoute>
-              <Home />
+              <Dashboard />
             </PrivateRoute>
           }
         />

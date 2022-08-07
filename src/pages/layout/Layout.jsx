@@ -420,7 +420,7 @@ export default function Layout() {
               </IconButton>
             </Typography>
 
-            <div>
+            <div variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <IconButton
                 id="basic-button"
                 aria-controls={menuOpen ? "basic-menu" : undefined}
@@ -535,10 +535,10 @@ export default function Layout() {
           <Divider />
 
           <List>
-            <Link to="/home" className={classes.linkStyle}>
+            <Link to="/dashboard" className={classes.linkStyle}>
               <ListItemButton
                 className={`${classes.menuItem} ${
-                  pathname === "/home" ? classes.menuItemActive : null
+                  pathname === "/dashboard" ? classes.menuItemActive : null
                 }`}
                 onClick={() => {
                   manageOpen("close");
@@ -548,7 +548,7 @@ export default function Layout() {
                   <HomeIcon />
                 </ListItemIcon>
 
-                <ListItemText primary="Home" />
+                <ListItemText primary="Dashboard" />
               </ListItemButton>
             </Link>
 
