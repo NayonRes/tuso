@@ -21,6 +21,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import InputBase from "@mui/material/InputBase";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import DeleteIcon from "@mui/icons-material/Delete";
 const useStyles = makeStyles((theme) => ({
   form: {
     padding: "50px",
@@ -29,6 +37,15 @@ const useStyles = makeStyles((theme) => ({
 
     width: "100%",
     boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+  },
+  buttonStyle: {
+    color: "#515151 !important",
+    textTransform: "none !important",
+    minWidth: "160px !important",
+  },
+  activeButtonStyle: {
+    background: "rgba(158,31,96,1) !important",
+    color: "#fff !important",
   },
 }));
 
@@ -52,6 +69,7 @@ const Department = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [department, setDepartment] = useState("");
   const [designation, setDesignation] = useState("");
+  const [active, setActive] = useState("Department");
 
   const handleDepartmentChange = (event) => {
     setDepartment(event.target.value);
@@ -198,10 +216,63 @@ const Department = () => {
     <div>
       <Grid
         container
-        justifyContent="center"
+        // justifyContent="center"
         alignItems="center"
-        style={{ height: "80vh" }}
+        // style={{ height: "80vh" }}
       >
+        <div style={{ marginBottom: "20px" }}>
+          <Button
+            className={`${classes.buttonStyle} ${
+              active === "Category" ? classes.activeButtonStyle : null
+            }`}
+            startIcon={<DeleteIcon />}
+            onClick={() => setActive("Category")}
+          >
+            Category
+          </Button>
+          &nbsp; &nbsp;
+          <Button
+            className={`${classes.buttonStyle} ${
+              active === "Quick List" ? classes.activeButtonStyle : null
+            }`}
+            startIcon={<DeleteIcon />}
+            onClick={() => setActive("Quick List")}
+          >
+            Quick List
+          </Button>
+          &nbsp; &nbsp;
+          <Button
+            className={`${classes.buttonStyle} ${
+              active === "Department" ? classes.activeButtonStyle : null
+            }`}
+            startIcon={<DeleteIcon />}
+            onClick={() => setActive("Department")}
+          >
+            Department
+          </Button>
+          &nbsp; &nbsp;
+          <Button
+            className={`${classes.buttonStyle} ${
+              active === "Country" ? classes.activeButtonStyle : null
+            }`}
+            startIcon={<DeleteIcon />}
+            onClick={() => setActive("Country")}
+          >
+            Country
+          </Button>
+          &nbsp; &nbsp;
+          <Button
+            className={`${classes.buttonStyle} ${
+              active === "Urgency" ? classes.activeButtonStyle : null
+            }`}
+            startIcon={<DeleteIcon />}
+            onClick={() => setActive("Urgency")}
+          >
+            Urgency
+          </Button>
+          &nbsp; &nbsp;
+        </div>
+
         <form className={classes.form} onSubmit={onSubmit}>
           <Typography
             variant="h5"
@@ -242,7 +313,10 @@ const Department = () => {
                     align="center"
                     style={{ borderRight: "1px solid #ddd" }}
                   >
-                    <FormControl style={{ width: "90%",background: "#fff" }} size="small">
+                    <FormControl
+                      style={{ width: "90%", background: "#fff" }}
+                      size="small"
+                    >
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -262,7 +336,10 @@ const Department = () => {
                     align="center"
                     style={{ borderRight: "1px solid #ddd" }}
                   >
-                    <FormControl style={{ width: "90%",background: "#fff" }} size="small">
+                    <FormControl
+                      style={{ width: "90%", background: "#fff" }}
+                      size="small"
+                    >
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -298,10 +375,9 @@ const Department = () => {
                     style={{ borderRight: "1px solid #ddd" }}
                   >
                     <TextField
-                   
                       size="small"
                       id="outlined-basic"
-                      style={{ width: "90%" ,background: "#fff"}}
+                      style={{ width: "90%", background: "#fff" }}
                       placeholder="Department"
                       variant="outlined"
                     />
@@ -313,7 +389,7 @@ const Department = () => {
                     <TextField
                       size="small"
                       id="outlined-basic"
-                      style={{ width: "90%",background: "#fff" }}
+                      style={{ width: "90%", background: "#fff" }}
                       placeholder="Designation"
                       variant="outlined"
                     />
@@ -363,28 +439,6 @@ const Department = () => {
               </TableBody>
             </Table>
           </TableContainer>
-
-          <Button
-            variant="contained"
-            disableElevation
-            style={{
-              marginTop: "50px",
-              display: "block",
-              marginLeft: "auto",
-              minWidth: "150px",
-            }}
-            disabled={loading}
-            // onClick={onSubmit}
-            type="submit"
-          >
-            {loading === false && "Save"}
-            <PulseLoader
-              color={"#353b48"}
-              loading={loading}
-              size={10}
-              speedMultiplier={0.5}
-            />{" "}
-          </Button>
         </form>
       </Grid>
     </div>
