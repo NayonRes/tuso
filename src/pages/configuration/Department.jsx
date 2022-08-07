@@ -242,7 +242,7 @@ const Department = () => {
                     align="center"
                     style={{ borderRight: "1px solid #ddd" }}
                   >
-                    <FormControl style={{ width: "90%" }} size="small">
+                    <FormControl style={{ width: "90%",background: "#fff" }} size="small">
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -262,7 +262,7 @@ const Department = () => {
                     align="center"
                     style={{ borderRight: "1px solid #ddd" }}
                   >
-                    <FormControl style={{ width: "90%" }} size="small">
+                    <FormControl style={{ width: "90%",background: "#fff" }} size="small">
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -298,9 +298,10 @@ const Department = () => {
                     style={{ borderRight: "1px solid #ddd" }}
                   >
                     <TextField
+                   
                       size="small"
                       id="outlined-basic"
-                      style={{ width: "90%" }}
+                      style={{ width: "90%" ,background: "#fff"}}
                       placeholder="Department"
                       variant="outlined"
                     />
@@ -312,7 +313,7 @@ const Department = () => {
                     <TextField
                       size="small"
                       id="outlined-basic"
-                      style={{ width: "90%" }}
+                      style={{ width: "90%",background: "#fff" }}
                       placeholder="Designation"
                       variant="outlined"
                     />
