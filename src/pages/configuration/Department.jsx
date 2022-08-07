@@ -35,7 +35,7 @@ import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 const useStyles = makeStyles((theme) => ({
   form: {
-    padding: "50px",
+    padding: "20px",
     background: "#fff",
     borderRadius: "10px",
 
