@@ -13,7 +13,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import axios from "axios";
-import { countryList } from "../data/CountryList";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -21,7 +20,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import TextareaAutosize from "@mui/material/TextareaAutosize"; 
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 const useStyles = makeStyles((theme) => ({
   form: {
     padding: "50px",
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Test = () => {
+const Department = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   // const { login, kinder_cubby_panel_user, logout } = useContext(AuthContext);
@@ -217,17 +216,33 @@ const Test = () => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">Deparment</TableCell>
-                  <TableCell align="center">Designation</TableCell>
-                  <TableCell align="center">Description</TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ borderRight: "1px solid #ddd" }}
+                  >
+                    Department
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ borderRight: "1px solid #ddd" }}
+                  >
+                    DESIGNATION
+                  </TableCell>
+                  <TableCell align="center">DESCRIPTION</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  sx={{
+                    background: "#f9f9f9",
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
                 >
-                  <TableCell align="center">
-                    <FormControl style={{ width: "90%" }}>
+                  <TableCell
+                    align="center"
+                    style={{ borderRight: "1px solid #ddd" }}
+                  >
+                    <FormControl style={{ width: "90%" }} size="small">
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -243,8 +258,11 @@ const Test = () => {
                       </Select>
                     </FormControl>
                   </TableCell>
-                  <TableCell align="center">
-                    <FormControl style={{ width: "90%" }}>
+                  <TableCell
+                    align="center"
+                    style={{ borderRight: "1px solid #ddd" }}
+                  >
+                    <FormControl style={{ width: "90%" }} size="small">
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -260,12 +278,84 @@ const Test = () => {
                       </Select>
                     </FormControl>
                   </TableCell>
-                  <TableCell align="center" rowSpan={2} colSpan={2}>
+                  <TableCell align="center" rowSpan={2}>
                     <TextareaAutosize
                       aria-label="minimum height"
-                      minRows={3}
+                      minRows={8}
                       // placeholder="Minimum 3 rows"
                       style={{ width: "90%" }}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{
+                    background: "#f9f9f9",
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <TableCell
+                    align="center"
+                    style={{ borderRight: "1px solid #ddd" }}
+                  >
+                    <TextField
+                      size="small"
+                      id="outlined-basic"
+                      style={{ width: "90%" }}
+                      placeholder="Department"
+                      variant="outlined"
+                    />
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ borderRight: "1px solid #ddd" }}
+                  >
+                    <TextField
+                      size="small"
+                      id="outlined-basic"
+                      style={{ width: "90%" }}
+                      placeholder="Designation"
+                      variant="outlined"
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell align="center" colSpan={3}>
+                    <Button variant="contained">Add</Button> &nbsp;
+                    <Button variant="contained" color="info">
+                      Edit
+                    </Button>{" "}
+                    &nbsp;
+                    <Button variant="contained" color="error">
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell
+                    style={{
+                      borderRight: "1px solid #ddd",
+                      fontSize: "17px",
+                      color: "#837e7e",
+                    }}
+                  >
+                    Admin
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ borderRight: "1px solid #ddd" }}
+                  ></TableCell>
+                  <TableCell align="center">
+                    {" "}
+                    <TextField
+                      size="small"
+                      id="outlined-basic"
+                      style={{ width: "90%" }}
+                      placeholder="Admin"
+                      variant="outlined"
                     />
                   </TableCell>
                 </TableRow>
@@ -300,4 +390,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default Department;

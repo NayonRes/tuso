@@ -11,8 +11,9 @@ import NoMatch from "../NoMatch";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import PulseLoader from "react-spinners/PulseLoader";
-import { makeStyles } from "@mui/styles"; 
+import { makeStyles } from "@mui/styles";
 import UserList from "../users/UserList";
+import Department from "../configuration/Department";
 const useStyles = makeStyles((theme) => ({
   dialogStyle: {
     // backgroundColor: "red",
@@ -97,6 +98,14 @@ const Navigation = ({ openLoadingDialog, setOpenLoadingDialog }) => {
           element={
             <PrivateRoute>
               <UserList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="department"
+          element={
+            <PrivateRoute>
+              <Department />
             </PrivateRoute>
           }
         />
