@@ -29,6 +29,10 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Link from "@mui/material/Link";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Stack from "@mui/material/Stack";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 const useStyles = makeStyles((theme) => ({
   form: {
     padding: "50px",
@@ -211,16 +215,67 @@ const Department = () => {
       setLoading(false);
     }
   };
-
+  function handleClick(event) {
+    event.preventDefault();
+    console.info("You clicked a breadcrumb.");
+  }
+  const breadcrumbs = [
+    <Link
+      underline="hover"
+      key="1"
+      href="/"
+      style={{ color: "#9e1f63" }}
+      onClick={handleClick}
+    >
+      Configuration
+    </Link>,
+    <Link
+      underline="hover"
+      key="2"
+      href="/"
+      style={{ color: "#9e1f63" }}
+      onClick={handleClick}
+    >
+      Department
+    </Link>,
+    <Typography key="3" color="text.primary">
+      Department
+    </Typography>,
+  ];
   return (
     <div>
       <Grid
         container
-        // justifyContent="center"
         alignItems="center"
+        // justifyContent="center"
         // style={{ height: "80vh" }}
       >
-        <div style={{ marginBottom: "20px" }}>
+        <Grid item xs={12} style={{ marginBottom: "30px" }}>
+          <Grid container alignItems="center">
+            <Grid
+              style={{ borderRight: "1px solid #a3a3a3", padding: "0px 20px" }}
+            >
+              <Typography
+                variant="h5"
+                style={{ color: "#515151" }}
+                component="div"
+              >
+                Configuration
+              </Typography>
+            </Grid>
+            <Grid style={{ padding: "0px 20px" }}>
+              <Stack spacing={2}>
+                <Breadcrumbs
+                  separator={<NavigateNextIcon fontSize="small" />}
+                  aria-label="breadcrumb"
+                >
+                  {breadcrumbs}
+                </Breadcrumbs>
+              </Stack>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} style={{ marginBottom: "30px" }}>
           <Button
             className={`${classes.buttonStyle} ${
               active === "Category" ? classes.activeButtonStyle : null
@@ -271,7 +326,7 @@ const Department = () => {
             Urgency
           </Button>
           &nbsp; &nbsp;
-        </div>
+        </Grid>
 
         <form className={classes.form} onSubmit={onSubmit}>
           <Typography
